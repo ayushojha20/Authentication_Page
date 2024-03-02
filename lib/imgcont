@@ -1,0 +1,14 @@
+
+     Container(
+                 
+                  width: w*0.5,
+                  height: w*0.3,
+                  decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                         "img/login.jpg"
+                        ),
+                        fit: BoxFit.cover
+                      )
+                     ),
+                  ),
