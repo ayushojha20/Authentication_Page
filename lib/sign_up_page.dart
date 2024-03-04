@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -12,6 +13,23 @@ class SignUpPage extends StatelessWidget {
     ];
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
+    TextEditingController emailController =TextEditingController();
+    TextEditingController passwordController= TextEditingController();
+
+    signUp(String email,String password)async{
+      if (email=="" && password==""){
+        AlertDialog(title: Text('Empty field'),)
+      }
+      else{
+        UserCredential? usercredential;
+        try{
+          usercredential= await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+        }
+        on FirebaseAuthException catch(ex){
+          return AlertDialog(title: Text('abc'),);
+        }
+      }
+          }
 
     return Scaffold(
        body: Container(
@@ -47,21 +65,23 @@ class SignUpPage extends StatelessWidget {
         child: Container(
           width: w*0.5,
           height: 50,
-          child: TextField(
-            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),label: Text('Username')),
+          child: TextField( 
+            controller: emailController,
+            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),hintText: 'Username',prefixIcon: Icon(Icons.email),),
           ),
         ),
       ),
       
       SizedBox(height: 10,),
-       Padding(
+
+      Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Container(
           width: w*0.5,
           height: 50,
           child: TextField(
-            
-            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),label: Text('Password')),
+            controller: passwordController,
+            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),hintText: 'Password',prefixIcon: Icon(Icons.password,)),
           ),
         ),
       ),
@@ -72,19 +92,8 @@ class SignUpPage extends StatelessWidget {
       ),
 
     SizedBox(height: 10,),
-    Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-           color: Colors.pink,
-                  ),
-        height: 30,
-        width: 70,
-       
-        child: Center(child: Text('Sign Up',style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal),)),
-      ),
-    ),
+
+  TextButton(onPressed: signUp(emailController.text.toString(),passwordController.text.toString()), child: Text('Sign Up',style: TextStyle(fontSize: 20,fontWeight: FontWeight.normal),)),
     
     SizedBox(height: 10
     ,),

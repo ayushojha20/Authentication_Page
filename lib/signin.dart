@@ -1,7 +1,7 @@
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 import 'package:login_page/sign_up_page.dart';
-import 'package:get/get.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +15,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
+    TextEditingController emailController =TextEditingController();
+    TextEditingController passwordController= TextEditingController();
 
     return Scaffold(
       
@@ -60,7 +62,8 @@ class _LoginPageState extends State<LoginPage> {
           width: w*0.5,
           height: 50,
           child: TextField(
-            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),label: Text('Username')),
+            controller: emailController,
+            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),hintText: 'Username',prefixIcon: Icon(Icons.email),),
           ),
         ),
       ),
@@ -72,8 +75,8 @@ class _LoginPageState extends State<LoginPage> {
           width: w*0.5,
           height: 50,
           child: TextField(
-            
-            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),label: Text('Password')),
+            controller: passwordController,
+            decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),hintText: 'Password',prefixIcon: Icon(Icons.password,)),
           ),
         ),
       ),

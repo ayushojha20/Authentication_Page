@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/login_page.dart';
+import 'package:login_page/home_page.dart';
+import 'package:login_page/signin.dart';
 import 'package:login_page/sign_up_page.dart';
 import 'package:login_page/welcomepage.dart';
 void main() {
@@ -32,6 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   Widget build(BuildContext context) {
-    return LoginPage();
+    return SignUpPage();
   }
 }
